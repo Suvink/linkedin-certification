@@ -52,7 +52,6 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
     )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}&certUrl=${encodeURIComponent(
       certificateURL as string
     )}&certId=${certificateId as string}`;
-    console.log(urlString);
     return urlString;
   },[...props]);
 
