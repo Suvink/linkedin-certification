@@ -78,12 +78,12 @@ export default App;
 
 | Property            | Type         | Description                                                       |
 | ------------------- | ------------ | ----------------------------------------------------------------- |
-| `certificationName` | `string`     | The name of the certification.                                    |
-| `organizationName`  | `string`     | The name of the organizaion                                       |
+| `certificationName` | `string`     | The name of the certification. `[Required]`                       |
+| `organizationName`  | `string`     | The name of the organizaion. `[Required]`                         |
 | `issuedMonth`       | `number`     | Certification issued month                                        |
 | `issuedYear`        | `number`     | Certification issued year                                         |
-| `expirationMonth`   | `number`     | Certification expiry month                                       |
-| `expirationYear`    | `number`     | Certification expiry year                                        |
+| `expirationMonth`   | `number`     | Certification expiry month                                        |
+| `expirationYear`    | `number`     | Certification expiry year                                         |
 | `certificateId`     | `number`     | Unique ID of the certification                                    |
 | `certificateURL`    | `string`     | URL for the certification                                         |
 | `newTab`            | `boolean`    | Set `true` to open the LinkedIn Certification window in a new tab |
