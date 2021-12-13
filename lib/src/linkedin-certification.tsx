@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import { LinkedinCertificationProps } from "./models/linkedin-certificate";
 import styles from "./css/style";
 import LinkedInIcon from "./assets/linkedin-icon";
@@ -33,7 +33,8 @@ import LinkedInIcon from "./assets/linkedin-icon";
  */
 
 const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
-  const generateLink = (
+
+  const generateLink = useCallback((
     certificationName: string,
     organizationName: string,
     issuedYear?: number,
@@ -53,14 +54,14 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
     )}&certId=${certificateId as string}`;
     console.log(urlString);
     return urlString;
-  };
+  },[...props]);
 
   return (
     <>
       <a
         href={generateLink(
-          props.certificationName,
           props.organizationName,
+          props.certificationName,
           props.issuedYear,
           props.issuedMonth,
           props.expirationYear,
