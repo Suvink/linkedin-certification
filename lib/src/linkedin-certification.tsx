@@ -43,14 +43,31 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
     certificateURL?: string,
     certificateId?: string
   ): string => {
-    const urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
+    if (issuedYear !== undefined && expirationYear !== undefined) {
+      if (issuedYear > expirationYear) {
+        throw new RangeError(
+          "Expiration year should be greater than the issued year"
+        );
+        return "#";
+      }
+    }
+
+    let urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
     &name=${encodeURIComponent(
       certificationName
     )}&organizationName=${encodeURIComponent(
       organizationName
-    )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}&certUrl=${encodeURIComponent(
-      certificateURL as string
-    )}&certId=${certificateId as string}`;
+    )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
+
+    if (certificateURL !== undefined) {
+      urlString =
+        urlString + `&certUrl=${encodeURIComponent(certificateURL as string)}`;
+    }
+
+    if (certificateId !== undefined) {
+      urlString = urlString + `&certId=${certificateId as string}`;
+    }
+
     console.log(urlString);
     return urlString;
   };

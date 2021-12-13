@@ -78,12 +78,12 @@ export default App;
 
 | Property            | Type         | Description                                                       |
 | ------------------- | ------------ | ----------------------------------------------------------------- |
-| `certificationName` | `string`     | The name of the certification.                                    |
-| `organizationName`  | `string`     | The name of the organizaion                                       |
+| `certificationName` | `string`     | The name of the certification. `[Required]`                       |
+| `organizationName`  | `string`     | The name of the organizaion. `[Required]`                         |
 | `issuedMonth`       | `number`     | Certification issued month                                        |
 | `issuedYear`        | `number`     | Certification issued year                                         |
-| `expirationMonth`   | `number`     | Certification expiry month                                       |
-| `expirationYear`    | `number`     | Certification expiry year                                        |
+| `expirationMonth`   | `number`     | Certification expiry month                                        |
+| `expirationYear`    | `number`     | Certification expiry year                                         |
 | `certificateId`     | `number`     | Unique ID of the certification                                    |
 | `certificateURL`    | `string`     | URL for the certification                                         |
 | `newTab`            | `boolean`    | Set `true` to open the LinkedIn Certification window in a new tab |
@@ -100,7 +100,9 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 ## Donations
+
 <a href="https://www.buymeacoffee.com/suvink" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 108px !important;" height="30"></a>
 
 # License
+
 [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0) © Suvin Nimnaka
