@@ -1,0 +1,33 @@
+{
+    "name": "linkedin-certification-plugin",
+    "private": true,
+    "description": "A react plugin to add certifications to Linkedin",
+    "keywords": [
+        "linkedin",
+        "plugin",
+        "react"
+    ],
+    "author": "Suvin Nimnaka",
+    "license": "Apache-2.0",
+    "workspaces": [
+        "example/*",
+        "lib"
+    ],
+    "scripts": {
+        "build": "lerna run build --scope my-react-package",
+        "watch": "lerna run watch --scope my-react-package",
+        "package": "lerna exec --scope my-react-package -- npm pack"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.6",
+        "@types/react-dom": "^17.0.5",
+        "lerna": "^4.0.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "homepage": "https://github.com/Suvink/linkedin-certification.git&readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Suvink/linkedin-certification.git"
+    }
+}

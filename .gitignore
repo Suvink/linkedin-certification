@@ -1,0 +1,39 @@
+# Dependency directories
+node_modules/
+lib/node_modules/
+example/linkedin-certification-example-app/node_modules/
+jspm_packages/
+
+# Distribution directories
+dist
+lib/dist
+build/Release
+target/
+npm/
+umd/
+
+# Cache directories
+.npm
+.eslintcache
+.node_repl_history
+
+# Log files
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log
+
+# IDEs/Code Editor directries
+.vscode
+.idea
+
+# Environment variables files
+.env
+
+# Misc
+.classpath
+.settings
+.factorypath
+.DS_Store
