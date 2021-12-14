@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import { LinkedinCertificationProps } from "./models/linkedin-certificate";
 import styles from "./css/style";
 import LinkedInIcon from "./assets/linkedin-icon";
@@ -33,55 +33,54 @@ import LinkedInIcon from "./assets/linkedin-icon";
  */
 
 const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
-
-  const generateLink = useCallback((
-    certificationName: string,
-    organizationName: string,
-    issuedYear?: number,
-    issuedMonth?: number,
-    expirationYear?: number,
-    expirationMonth?: number,
-    certificateURL?: string,
-    certificateId?: string
-  ): string => {
-    if (issuedYear !== undefined && expirationYear !== undefined) {
-      if (issuedYear > expirationYear) {
-        throw new RangeError(
-          "Expiration year should be greater than the issued year"
-        );
-        return "#";
+  const generateLink = useCallback(
+    (
+      certificationName: string,
+      organizationName: string,
+      issuedYear?: number,
+      issuedMonth?: number,
+      expirationYear?: number,
+      expirationMonth?: number,
+      certificateURL?: string,
+      certificateId?: string
+    ): string => {
+      if (issuedYear !== undefined && expirationYear !== undefined) {
+        if (issuedYear > expirationYear) {
+          throw new RangeError(
+            "Expiration year should be greater than the issued year"
+          );
+          return "#";
+        }
       }
-    }
 
-    let urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
+      let urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
     &name=${encodeURIComponent(
       certificationName
     )}&organizationName=${encodeURIComponent(
-      organizationName
-    )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}&certUrl=${encodeURIComponent(
-      certificateURL as string
-    )}&certId=${certificateId as string}`;
-    )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
+        organizationName
+      )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
 
-    if (certificateURL !== undefined) {
-      urlString =
-        urlString + `&certUrl=${encodeURIComponent(certificateURL as string)}`;
-    }
+      if (certificateURL !== undefined) {
+        urlString =
+          urlString +
+          `&certUrl=${encodeURIComponent(certificateURL as string)}`;
+      }
 
-    if (certificateId !== undefined) {
-      urlString = urlString + `&certId=${certificateId as string}`;
-    }
+      if (certificateId !== undefined) {
+        urlString = urlString + `&certId=${certificateId as string}`;
+      }
 
-    console.log(urlString);
-    return urlString;
-  },[...props]);
+      return urlString;
+    },
+    [props]
+  ); //end
 
   return (
     <>
       <a
         href={generateLink(
-          props.organizationName,
           props.certificationName,
+          props.organizationName,
           props.issuedYear,
           props.issuedMonth,
           props.expirationYear,
