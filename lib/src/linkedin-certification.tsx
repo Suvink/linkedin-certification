@@ -72,7 +72,7 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
 
       return urlString;
     },
-    [props]
+    Object.keys(props)
   ); //end
 
   return (
