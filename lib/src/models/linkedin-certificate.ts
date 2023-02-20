@@ -2,7 +2,8 @@ import React from "react";
 
 export interface LinkedinCertificationProps {
     certificationName: string,
-    organizationName: string,
+    organizationId?: string,
+    organizationName?: string,
     issuedMonth?: number,
     issuedYear?: number,
     expirationYear?: number,

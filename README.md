@@ -51,6 +51,7 @@ const App = () => {
   return (
     <LinkedinCertification
       certificationName="My Sample Certification"
+      organizationId="1234567"
       organizationName="My Sample Organization"
       issuedMonth={12}
       issuedYear={2021}
@@ -79,7 +80,8 @@ export default App;
 | Property            | Type         | Description                                                       |
 | ------------------- | ------------ | ----------------------------------------------------------------- |
 | `certificationName` | `string`     | The name of the certification. `[Required]`                       |
-| `organizationName`  | `string`     | The name of the organizaion. `[Required]`                         |
+| `organizationId`    | `string`     | The id of the organization.                                       |
+| `organizationName`  | `string`     | The name of the organization.                                     |
 | `issuedMonth`       | `number`     | Certification issued month                                        |
 | `issuedYear`        | `number`     | Certification issued year                                         |
 | `expirationMonth`   | `number`     | Certification expiry month                                        |
@@ -88,6 +90,14 @@ export default App;
 | `certificateURL`    | `string`     | URL for the certification                                         |
 | `newTab`            | `boolean`    | Set `true` to open the LinkedIn Certification window in a new tab |
 | `customButton`      | `React Node` | Lets you pass your own custom button.                             |
+
+
+- organizationId (**if your organization has an existing page on LinkedIn**) -> You Need to use organizationId
+- organizationName (**if your organization doesn’t have an existing page on LinkedIn**) -> You need to use OrganizationName
+
+*When defining your custom fields, please pick between ‘organizationId’ and ‘organizationName’. The two cannot be included at the same time. If your organization has an existing page on LinkedIn, we recommend you use the ‘organizationId’ field. If your organization does not have an existing page on LinkedIn, please use the ‘organizationName’ field instead.
+
+[Linkedin Documentation](https://addtoprofile.linkedin.com/)
 
 ## Contributing
 
