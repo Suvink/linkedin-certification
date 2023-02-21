@@ -21,8 +21,8 @@ import LinkedInIcon from "./assets/linkedin-icon";
  * @example
  * <LinkedinCertification 
      certificationName="My Sample Certification"
-     organizationId="My Awesome Organization"
-     organizationName="1444"
+     organizationId="123456"
+     organizationName="My Awesome Organization"
      issuedMonth={12}
      issuedYear={2021}
      expirationMonth={3}
@@ -97,6 +97,7 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
       <a
         href={generateLink(
           props.certificationName,
+          props.organizationId,
           props.organizationName,
           props.issuedYear,
           props.issuedMonth,
