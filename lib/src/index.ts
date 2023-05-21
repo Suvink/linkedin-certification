@@ -16,5 +16,5 @@
  * under the License.
  */
 
-export { default as LinkedinCertification } from './linkedin-certification';
-export * from './linkedin-certification';
+export { default as LinkedInCertification } from "./linkedin-certification";
+export * from "./linkedin-certification";

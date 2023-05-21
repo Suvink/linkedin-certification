@@ -1,45 +1,33 @@
 import React, { useCallback } from "react";
-import { LinkedinCertificationProps } from "./models/linkedin-certificate";
+import PropTypes from "prop-types";
+import { LinkedInCertificationProps } from "./models/linkedin-certificate";
 import styles from "./css/style";
 import LinkedInIcon from "./assets/linkedin-icon";
 
 /**
- * Renders a button that can be customized to add a certification to Linkedin
- * 
- * @param certificationName - The name of the certificate
- * @param organizaionId - The id of the organizaion
-   @param organizationName - The name of the organizaion
-   @param issuedMonth - Certification issued month
-   @param issuedYear - Certification issued year
-   @param expirationMonth - Certification expiry month
-   @param expirationYear - Certification expiry year
-   @param certificateId - Unique ID of the certification
-   @param certificateURL - URL for the certification
-   @param newTab - If you want to open in a new tab or in the existing tab
-   @param customButton - Lets you use your own button
- * 
+ * Renders a button that can be customized to add a certification to LinkedIn
+ * @param {LinkedInCertificationProps} props - The props of the component
  * @example
- * <LinkedinCertification 
-     certificationName="My Sample Certification"
-     organizationId="123456"
-     organizationName="My Awesome Organization"
-     issuedMonth={12}
-     issuedYear={2021}
-     expirationMonth={3}
-     expirationYear={2023}
-     certificateId="29c2e87e-5c1c-11ec-bf63-0242ac130002"
-     certificateURL="https://www.google.com"
-     newTab={true}
-     customButton={<button className="button is-primary">My Custom Button</button>}
-    /> 
+ * <LinkedinCertification
+  certificationName="My Sample Certification"
+  organizationName="My Awesome Organization"
+  issuedMonth={12}
+  issuedYear={2021}
+  expirationMonth={3}
+  expirationYear={2023}
+  certificateId="29c2e87e-5c1c-11ec-bf63-0242ac130002"
+  certificateURL="https://www.google.com"
+  newTab={true}
+  customButton={<button className="button is-primary">My Custom Button</button>}
+ />
  */
 
-const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
+const LinkedInCertification: React.FC<LinkedInCertificationProps> = (props) => {
   const generateLink = useCallback(
     (
       certificationName: string,
       organizationName?: string,
-      organizationId?: string,
+      organizationId?: number,
       issuedYear?: number,
       issuedMonth?: number,
       expirationYear?: number,
@@ -52,30 +40,28 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
           throw new RangeError(
             "Expiration year should be greater than the issued year"
           );
-          return "#";
         }
       }
 
-      let urlString = "";
+      let urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(
+        certificationName
+      )}`;
+
       if (organizationId !== undefined) {
         // Your organization ID (if your organization has an existing page on LinkedIn)
-        urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
-      &name=${encodeURIComponent(
-        certificationName
-      )}&organizationId=${encodeURIComponent(
-          organizationId
-        )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
+        urlString += `&organizationId=${organizationId.toString()}`;
       } else if (organizationName !== undefined) {
-        // Your organization name (if your organization doesn’t have an existing page on LinkedIn)
-        urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
-      &name=${encodeURIComponent(
-        certificationName
-      )}&organizationName=${encodeURIComponent(
+        // Your organization name (if your organization does not have an existing page on LinkedIn)
+        urlString += `&organizationName=${encodeURIComponent(
           organizationName
-        )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
+        )}`;
       } else {
-        throw new Error("Either organizationName or organizationId must be defined");
+        throw new Error(
+          "Either organizationName or organizationId must be defined"
+        );
       }
+
+      urlString += `&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
 
       if (certificateURL !== undefined) {
         urlString =
@@ -97,8 +83,8 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
       <a
         href={generateLink(
           props.certificationName,
-          props.organizationId,
           props.organizationName,
+          props.organizationId,
           props.issuedYear,
           props.issuedMonth,
           props.expirationYear,
@@ -121,4 +107,45 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
   );
 };
 
-export default LinkedinCertification;
+/**
+ * Checks if the organization props are valid
+ * @param {LinkedInCertificationProps} props
+ * @returns {Error|null} - Returns an error if the props are invalid
+ */
+const orgPropCheck = (props: LinkedInCertificationProps): Error | null => {
+  if (
+    props.organizationId !== undefined &&
+    props.organizationName !== undefined
+  ) {
+    return new Error(
+      "Either organizationName or organizationId must be defined"
+    );
+  }
+
+  if (
+    props.organizationId === undefined &&
+    props.organizationName === undefined
+  ) {
+    return new Error(
+      "Either organizationName or organizationId must be defined"
+    );
+  }
+
+  return null;
+};
+
+LinkedInCertification.propTypes = {
+  certificationName: PropTypes.string.isRequired,
+  organizationName: orgPropCheck,
+  organizationId: orgPropCheck,
+  issuedMonth: PropTypes.number,
+  issuedYear: PropTypes.number,
+  expirationMonth: PropTypes.number,
+  expirationYear: PropTypes.number,
+  certificateURL: PropTypes.string,
+  certificateId: PropTypes.string,
+  newTab: PropTypes.bool,
+  customButton: PropTypes.element,
+};
+
+export default LinkedInCertification;
