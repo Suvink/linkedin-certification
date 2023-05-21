@@ -19,10 +19,10 @@
         "package": "lerna exec --scope my-react-package -- npm pack"
     },
     "devDependencies": {
-        "@types/react": "^17.0.6",
-        "@types/react-dom": "^17.0.5",
-        "lerna": "^4.0.0",
-        "react-dom": "^17.0.2"
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "lerna": "^6.6.2",
+        "react-dom": "^18.2.0"
     },
     "homepage": "https://github.com/Suvink/linkedin-certification.git&readme",
     "repository": {
