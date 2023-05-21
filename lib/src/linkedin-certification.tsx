@@ -7,6 +7,7 @@ import LinkedInIcon from "./assets/linkedin-icon";
  * Renders a button that can be customized to add a certification to Linkedin
  * 
  * @param certificationName - The name of the certificate
+ * @param organizaionId - The id of the organizaion
    @param organizationName - The name of the organizaion
    @param issuedMonth - Certification issued month
    @param issuedYear - Certification issued year
@@ -20,6 +21,7 @@ import LinkedInIcon from "./assets/linkedin-icon";
  * @example
  * <LinkedinCertification 
      certificationName="My Sample Certification"
+     organizationId="123456"
      organizationName="My Awesome Organization"
      issuedMonth={12}
      issuedYear={2021}
@@ -36,7 +38,8 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
   const generateLink = useCallback(
     (
       certificationName: string,
-      organizationName: string,
+      organizationName?: string,
+      organizationId?: string,
       issuedYear?: number,
       issuedMonth?: number,
       expirationYear?: number,
@@ -53,12 +56,26 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
         }
       }
 
-      let urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
-    &name=${encodeURIComponent(
-      certificationName
-    )}&organizationName=${encodeURIComponent(
-        organizationName
-      )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
+      let urlString = "";
+      if (organizationId !== undefined) {
+        // Your organization ID (if your organization has an existing page on LinkedIn)
+        urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
+      &name=${encodeURIComponent(
+        certificationName
+      )}&organizationId=${encodeURIComponent(
+          organizationId
+        )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
+      } else if (organizationName !== undefined) {
+        // Your organization name (if your organization doesn’t have an existing page on LinkedIn)
+        urlString = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME
+      &name=${encodeURIComponent(
+        certificationName
+      )}&organizationName=${encodeURIComponent(
+          organizationName
+        )}&issueYear=${issuedYear?.toString()}&issueMonth=${issuedMonth?.toString()}&expirationYear=${expirationYear?.toString()}&expirationMonth=${expirationMonth?.toString()}`;
+      } else {
+        throw new Error("Either organizationName or organizationId must be defined");
+      }
 
       if (certificateURL !== undefined) {
         urlString =
@@ -80,6 +97,7 @@ const LinkedinCertification: React.FC<LinkedinCertificationProps> = (props) => {
       <a
         href={generateLink(
           props.certificationName,
+          props.organizationId,
           props.organizationName,
           props.issuedYear,
           props.issuedMonth,
