@@ -1,5 +1,7 @@
 # LinkedIn Certification
 
+[![Release](https://github.com/Suvink/linkedin-certification/actions/workflows/release.yml/badge.svg)](https://github.com/Suvink/linkedin-certification/actions/workflows/release.yml)
+
 Lets you add your own certification to LinkedIn with a single click from your websites.
 
 Default Button:
