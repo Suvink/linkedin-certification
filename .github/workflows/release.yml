@@ -25,17 +25,17 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         token: ${{ secrets.GH_BOT_TOKEN }}
       if: github.repository == 'Suvink/linkedin-certification'
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       if: github.repository != 'Suvink/linkedin-certification'
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: https://registry.npmjs.org
