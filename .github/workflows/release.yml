@@ -1,0 +1,86 @@
+name: Release
+
+on:
+
+  workflow_dispatch:
+
+    inputs:
+
+      Type:
+
+        description: 'Choose which version to bump before release'
+        required: true
+        default: 'patch'
+      
+jobs:
+
+  release:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GITHUB_BOT_TOKEN }}
+      if: github.repository == 'Suvink/linkedin-certification'
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      if: github.repository != 'Suvink/linkedin-certification'
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: https://registry.npmjs.org
+
+    - name: Install Dependencies
+      run: yarn install
+
+    - name: Build
+      run: yarn build
+
+    - name: Bump Version
+      run: |
+        git config --global user.email "version.bump@github.action.com"
+        git config --global user.name "suvin-github-bot"
+        yarn run bump-${{ github.event.inputs.Type }}-version
+        git push --follow-tags
+    
+    - name: Pack Release Artifacts
+      run: |
+        mkdir artifacts
+        if test -d example
+        then
+          cd example
+          rm -rf **/node_modules/
+          for dir in */ ; do
+              zip -r "../artifacts/${dir%/}.zip" $dir
+          done
+        fi
+    
+    - name: Release Plugin
+      run: |
+        version=`git describe --tags --abbrev=0`
+        echo ${{ secrets.GITHUB_BOT_TOKEN }} | gh auth login --with-token
+        if test -d example
+        then
+          gh release create $version artifacts/*
+        else
+          gh release create $version
+        fi
+
+    - name: Publish Plugin
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
+        cp README.md lib
+        cd lib
+        npm publish --access public
