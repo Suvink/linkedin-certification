@@ -9,7 +9,7 @@ Default Button:
 ## Install
 
 ```npm
-npm install linkedin-certification --save
+npm install linkedin-certification
 ```
 
 <i>Add the --save option to add this as a dependency in your application's `package.json`</i>
