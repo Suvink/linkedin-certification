@@ -78,7 +78,7 @@ jobs:
 
     - name: Publish Plugin
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_KEY }}
       run: |
         echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
         cp README.md lib
