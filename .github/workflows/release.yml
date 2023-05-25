@@ -27,7 +27,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GITHUB_BOT_TOKEN }}
+        token: ${{ secrets.GH_BOT_TOKEN }}
       if: github.repository == 'Suvink/linkedin-certification'
 
     - name: Checkout
@@ -68,7 +68,7 @@ jobs:
     - name: Release Plugin
       run: |
         version=`git describe --tags --abbrev=0`
-        echo ${{ secrets.GITHUB_BOT_TOKEN }} | gh auth login --with-token
+        echo ${{ secrets.GH_BOT_TOKEN }} | gh auth login --with-token
         if test -d example
         then
           gh release create $version artifacts/*
