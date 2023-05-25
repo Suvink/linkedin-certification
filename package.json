@@ -14,15 +14,15 @@
         "lib"
     ],
     "scripts": {
-        "build": "lerna run build --scope my-react-package",
-        "watch": "lerna run watch --scope my-react-package",
-        "package": "lerna exec --scope my-react-package -- npm pack"
+        "build": "lerna run build --scope linkedin-certification",
+        "watch": "lerna run watch --scope linkedin-certification",
+        "package": "lerna exec --scope linkedin-certification -- npm pack"
     },
     "devDependencies": {
-        "@types/react": "^18.2.0",
-        "@types/react-dom": "^18.2.0",
         "lerna": "^6.6.2",
-        "react-dom": "^18.2.0"
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "linkedin-certification": "^1.0.0"
     },
     "homepage": "https://github.com/Suvink/linkedin-certification.git&readme",
     "repository": {
