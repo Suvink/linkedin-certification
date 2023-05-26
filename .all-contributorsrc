@@ -24,6 +24,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "nipunchamikara",
+      "name": "Nipun Chamikara Weerasiri",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25861544?v=4",
+      "profile": "https://github.com/nipunchamikara",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
