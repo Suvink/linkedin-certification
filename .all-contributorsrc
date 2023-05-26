@@ -21,6 +21,15 @@
       "name": "Yunus Emre Alpu",
       "avatar_url": "https://avatars.githubusercontent.com/u/44679555?v=4",
       "profile": "http://yunusemrealpu.netlify.app",
+        "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ravinhwg",
+      "name": "Ravin Hewage",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25723369?v=4",
+      "profile": "http://hewage.me",
       "contributions": [
         "code"
       ]
