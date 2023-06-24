@@ -6,7 +6,8 @@ import LinkedInIcon from "./assets/linkedin-icon";
 
 /**
  * Renders a button that can be customized to add a certification to LinkedIn
- * @param {LinkedInCertificationProps} props - The props of the component
+ * @param {LinkedInCertificationProps} props The props of the component
+ * @returns {JSX.Element} Returns a button that can be customized to add a certification to LinkedIn
  * @example
  * <LinkedinCertification
   certificationName="My Sample Certification"
@@ -21,7 +22,6 @@ import LinkedInIcon from "./assets/linkedin-icon";
   customButton={<button className="button is-primary">My Custom Button</button>}
  />
  */
-
 const LinkedInCertification: React.FC<LinkedInCertificationProps> = (props) => {
   const generateLink = useCallback(
     (
@@ -129,6 +129,18 @@ const orgPropCheck = (props: LinkedInCertificationProps): Error | null => {
     return new Error(
       "Either organizationName or organizationId must be defined"
     );
+  }
+
+  if (props.organizationId !== undefined) {
+    if (isNaN(props.organizationId)) {
+      return new Error("organizationId must be a number");
+    }
+  }
+
+  if (props.organizationName !== undefined) {
+    if (props.organizationName.length > 100) {
+      return new Error("organizationName must be a string");
+    }
   }
 
   return null;

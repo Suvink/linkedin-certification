@@ -1,6 +1,6 @@
 # LinkedIn Certification
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Release](https://github.com/Suvink/linkedin-certification/actions/workflows/release.yml/badge.svg)](https://github.com/Suvink/linkedin-certification/actions/workflows/release.yml)
@@ -16,8 +16,6 @@ Default Button:
 ```npm
 npm install linkedin-certification
 ```
-
-<i>Add the --save option to add this as a dependency in your application's `package.json`</i>
 
 ## Basic Usage
 
@@ -110,8 +108,8 @@ export default App;
 | Property            | Type         | Description                                                       |
 |---------------------|--------------|-------------------------------------------------------------------|
 | `certificationName` | `string`     | The name of the certification. `[Required]`                       |
-| `organizationId*`   | `string`     | The id of the organization.                                       |
-| `organizationName*` | `string`     | The name of the organization.                                     |
+| `organizationId`    | `string`     | The id of the organization*.                                      |
+| `organizationName`  | `string`     | The name of the organization*.                                    |
 | `issuedMonth`       | `number`     | Certification issued month                                        |
 | `issuedYear`        | `number`     | Certification issued year                                         |
 | `expirationMonth`   | `number`     | Certification expiry month                                        |

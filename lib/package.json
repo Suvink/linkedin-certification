@@ -4,10 +4,13 @@
   "type": "module",
   "version": "1.1.0",
   "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "fix-lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepack": "yarn build",
     "build": "rollup -c",
-    "watch": "rollup -cw"
+    "watch": "rollup -cw",
+    "type-check": "tsc --noEmit"
   },
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -38,5 +41,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Suvink/linkedin-certification.git"
-  }
+  },
+  "dependencies": {}
 }
