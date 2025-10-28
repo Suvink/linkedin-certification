@@ -22,9 +22,9 @@
         "bump-major-version": "lerna version major --yes"
     },
     "devDependencies": {
-        "lerna": "^6.6.2",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "lerna": "^9.0.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
         "prop-types": "^15.8.1"
     },
     "homepage": "https://github.com/Suvink/linkedin-certification.git&readme",
