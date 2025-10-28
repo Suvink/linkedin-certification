@@ -41,16 +41,16 @@ jobs:
         registry-url: https://registry.npmjs.org
 
     - name: Install Dependencies
-      run: yarn install
+      run: npm install
 
     - name: Build
-      run: yarn build
+      run: npm run build
 
     - name: Bump Version
       run: |
         git config --global user.email "version.bump@github.action.com"
         git config --global user.name "suvin-github-bot"
-        yarn run bump-${{ github.event.inputs.Type }}-version
+        npm run bump-${{ github.event.inputs.Type }}-version
         git push --follow-tags
     
     - name: Pack Release Artifacts
